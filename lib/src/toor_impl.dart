@@ -2,28 +2,28 @@ part of 'toor.dart';
 
 class _ToorImpl extends Toor {
   @override
-  ToorFactory<T> registerFactory<T>(FactoryFunc<T> factoryFunc) {
+  ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc) {
     return _ToorFactoryImpl(factoryFunc);
   }
 
   @override
-  ToorLazySingleton<T> registerLazySingleton<T>(
+  ToorLocator<T> registerLazySingleton<T>(
     LazySingletonFunc<T> lazySingletonFunc,
   ) {
     return _ToorLazySingletonImpl(lazySingletonFunc);
   }
 }
 
-class _ToorFactoryImpl<T> extends ToorFactory<T> {
+class _ToorFactoryImpl<T> extends ToorLocator<T> {
   const _ToorFactoryImpl(this.factoryFunc);
 
   final FactoryFunc<T> factoryFunc;
 
   @override
-  T create() => factoryFunc();
+  T get() => factoryFunc();
 }
 
-class _ToorLazySingletonImpl<T> extends ToorLazySingleton<T> {
+class _ToorLazySingletonImpl<T> extends ToorLocator<T> {
   _ToorLazySingletonImpl(this.lazySingletonFunc);
 
   final LazySingletonFunc lazySingletonFunc;
@@ -36,7 +36,7 @@ class _ToorLazySingletonImpl<T> extends ToorLazySingleton<T> {
   }
 
   @override
-  void reset() {
+  void dispose() {
     _instance = null;
   }
 }

@@ -12,32 +12,20 @@ abstract class Toor {
 
   /// Registers a factory (i. e. a new instance of [T] will be created via
   /// [factoryFunc] on every call of [ToorFactory.create()]).
-  ToorFactory<T> registerFactory<T>(FactoryFunc<T> factoryFunc);
+  ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc);
 
   /// Registers a singleton which will be created once called.
-  ToorLazySingleton<T> registerLazySingleton<T>(
+  ToorLocator<T> registerLazySingleton<T>(
     LazySingletonFunc<T> lazySingletonFunc,
   );
 }
 
-abstract class ToorFactory<T> {
-  const ToorFactory();
+abstract class ToorLocator<T> {
+  const ToorLocator();
 
-  /// Creates a new instance of [T].
-  T create();
-
-  T call() => create();
-}
-
-abstract class ToorLazySingleton<T> {
-  const ToorLazySingleton();
-
-  /// Returns the created instance of [T]. If an instance is not created
-  /// yet, a new one will be created.
   T get();
 
   T call() => get();
 
-  /// Deletes the current instance of [T].
-  void reset();
+  void dispose() {}
 }
