@@ -8,9 +8,9 @@ class _ToorImpl extends Toor {
 
   @override
   ToorLocator<T> registerLazySingleton<T>(
-    LazySingletonFunc<T> lazySingletonFunc,
+    FactoryFunc<T> lazySingletonCreator,
   ) {
-    return _ToorLazySingletonImpl(lazySingletonFunc);
+    return _ToorLazySingletonImpl(lazySingletonCreator);
   }
 }
 
@@ -24,15 +24,15 @@ class _ToorFactoryImpl<T> extends ToorLocator<T> {
 }
 
 class _ToorLazySingletonImpl<T> extends ToorLocator<T> {
-  _ToorLazySingletonImpl(this.lazySingletonFunc);
+  _ToorLazySingletonImpl(this.lazySingletonCreator);
 
-  final LazySingletonFunc lazySingletonFunc;
+  final FactoryFunc lazySingletonCreator;
 
   T? _instance;
 
   @override
   T get() {
-    return _instance ??= lazySingletonFunc();
+    return _instance ??= lazySingletonCreator();
   }
 
   @override

@@ -2,8 +2,6 @@ part 'toor_impl.dart';
 
 typedef FactoryFunc<T> = T Function();
 
-typedef LazySingletonFunc<T> = T Function();
-
 abstract class Toor {
   static late final Toor _instance = _ToorImpl();
 
@@ -16,7 +14,7 @@ abstract class Toor {
 
   /// Registers a singleton which will be created once called.
   ToorLocator<T> registerLazySingleton<T>(
-    LazySingletonFunc<T> lazySingletonFunc,
+    FactoryFunc<T> lazySingletonCreator,
   );
 }
 
