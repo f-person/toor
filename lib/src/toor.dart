@@ -23,7 +23,7 @@ abstract class Toor {
   /// This lets you group factories and singletons by registering them
   /// on a specific [Toor] instance. This lets you to separate locators
   /// and reset a selected group of locators when needed.
-  factory Toor.createNewInstance() {
+  factory Toor.newInstance() {
     return _ToorImpl();
   }
 
