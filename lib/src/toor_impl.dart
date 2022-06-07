@@ -24,6 +24,11 @@ class _ToorFactoryImpl<T> extends ToorLocator<T> {
 
   @override
   T get() => factoryFunc();
+
+  @override
+  void reset() {
+    // No need to do anything here.
+  }
 }
 
 class _ToorLazySingletonImpl<T> extends ToorLocator<T> {

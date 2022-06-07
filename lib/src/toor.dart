@@ -59,5 +59,5 @@ abstract class ToorLocator<T> {
   /// Nothing will happen if this [ToorLocator] is a factory.
   ///
   /// See also [_ToorLazySingletonImpl], [_ToorFactoryImpl].
-  void reset() {}
+  void reset();
 }

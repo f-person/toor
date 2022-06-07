@@ -10,6 +10,7 @@ extension ToorLocatorOverrider<T> on ToorLocator<T> {
       locator.factoryFunc = factoryFunc;
     } else if (locator is _ToorLazySingletonImpl<T>) {
       locator.lazySingletonCreator = factoryFunc;
+      locator._instanceHolder = locator._createInstanceHolder();
     }
   }
 }

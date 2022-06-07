@@ -3,23 +3,31 @@ import 'package:test/scaffolding.dart';
 import 'package:toor/toor.dart';
 
 void main() {
-  group(
-    'Override',
-    () {
-      test(
-        'overrides factories',
-        () {
-          const testValue1 = 1984;
-          const testValue2 = 451;
+  group('Override', () {
+    test('overrides factories', () {
+      const initialObject = 1984;
+      const overridenObject = 451;
 
-          final testFactory =
-              Toor.instance.registerFactory<int>(() => testValue1);
-
-          expect(testFactory(), testValue1);
-          testFactory.override(() => testValue2);
-          expect(testFactory(), testValue2);
-        },
+      final testFactory = Toor.instance.registerFactory<int>(
+        () => initialObject,
       );
-    },
-  );
+
+      expect(testFactory(), initialObject);
+      testFactory.override(() => overridenObject);
+      expect(testFactory(), overridenObject);
+    });
+
+    test('overrides lazy singletons', () {
+      final initialObject = 12;
+      final overridenObject = 23;
+
+      final lazySingleton = Toor.instance.registerLazySingleton(
+        () => initialObject,
+      );
+
+      expect(lazySingleton(), initialObject);
+      lazySingleton.override(() => overridenObject);
+      expect(lazySingleton(), overridenObject);
+    });
+  });
 }
