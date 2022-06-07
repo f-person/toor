@@ -18,9 +18,9 @@ class _ToorImpl implements Toor {
 }
 
 class _ToorFactoryImpl<T> extends ToorLocator<T> {
-  const _ToorFactoryImpl(this.factoryFunc);
+  _ToorFactoryImpl(this.factoryFunc);
 
-  final FactoryFunc<T> factoryFunc;
+  late FactoryFunc<T> factoryFunc;
 
   @override
   T get() => factoryFunc();
@@ -29,7 +29,7 @@ class _ToorFactoryImpl<T> extends ToorLocator<T> {
 class _ToorLazySingletonImpl<T> extends ToorLocator<T> {
   _ToorLazySingletonImpl(this.lazySingletonCreator);
 
-  final FactoryFunc<T> lazySingletonCreator;
+  late FactoryFunc<T> lazySingletonCreator;
 
   late _ToorLazySingletonHolder<T> _instanceHolder = _createInstanceHolder();
 

@@ -1,4 +1,7 @@
+import 'package:meta/meta.dart';
+
 part 'toor_impl.dart';
+part 'toor_test.dart';
 
 typedef FactoryFunc<T> = T Function();
 
