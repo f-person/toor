@@ -1,8 +1,11 @@
 import 'package:meta/meta.dart';
 
 part 'toor_impl.dart';
+part 'toor_factory_impl.dart';
+part 'toor_lazy_singleton_impl.dart';
 part 'toor_test.dart';
 
+/// Signature for factory and lazy singleton creator functions.
 typedef FactoryFunc<T> = T Function();
 
 /// A simple service locator manager that lets you register compile-time safe
