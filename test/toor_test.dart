@@ -28,6 +28,17 @@ void main() {
 
       expect(identical(factory1(), factory2()), isFalse);
     });
+
+    test(
+      'reset does not throw anything',
+      () {
+        Object _factoryFunc() => Object();
+
+        final testFactory = Toor.instance.registerFactory(_factoryFunc);
+
+        expect(testFactory.reset, isNot(throwsException));
+      },
+    );
   });
 
   group('ToorLazySingleton', () {
