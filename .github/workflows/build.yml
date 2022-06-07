@@ -1,0 +1,19 @@
+name: "Test"
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - name: Install dependencies
+        run: dart pub get
+      - name: Analyze codebase
+        run: dart analyze
+      - name: Run tests
+        run: |
+          dart pub global activate coverage
+          dart test --coverage="coverage"
+          format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
+      - uses: codecov/codecov-action@v2
