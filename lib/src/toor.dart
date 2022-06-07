@@ -42,6 +42,15 @@ abstract class Toor {
   ToorLocator<T> registerLazySingleton<T>(
     FactoryFunc<T> lazySingletonCreator,
   );
+
+  /// {@template ToorReset}
+  /// Resets all registered lazy singletons.
+  ///
+  /// After executing this function, the next call to [ToorLocator.get] on
+  /// a lazy singleton will result in creating a new instance via
+  /// the `lazySingletonCreator` callback, provided to [registerLazySingleton].
+  /// {@endtemplate}
+  void reset();
 }
 
 /// The class for using factories or singletons registered with [Toor].
