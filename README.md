@@ -12,6 +12,10 @@ the `late` keyword so that they are created only when used.
 ```dart
 final toor = Toor.instance;
 
+late final httpClientSingleton = toor.registerLazySingleton<IHttpClient>(
+  DioHttpClientImpl.new,
+);
+
 late final authRepositoryFactory = toor.registerFactory<IAuthRepository>(
   () => AuthRepositoryImpl(httpClient: httpClientSingleton()),
 );
@@ -25,7 +29,7 @@ void authenticate(String email, String password) {
 ```
 
 ## ✨ Toor in detail
-### Types of registering 
+### Types of locators 
 Toor currently supports two types of objects: factories and lazy singletons.
 
 #### Factory
