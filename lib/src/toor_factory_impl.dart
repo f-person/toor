@@ -13,3 +13,12 @@ class _ToorFactoryImpl<T> extends ToorLocator<T> {
     // No need to do anything here.
   }
 }
+
+class _ToorFactoryAsyncImpl<T> extends ToorLocatorAsync<T> {
+  _ToorFactoryAsyncImpl(this.factoryFunc);
+
+  late FactoryFuncAsync<T> factoryFunc;
+
+  @override
+  Future<T> get() => factoryFunc();
+}

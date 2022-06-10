@@ -60,6 +60,28 @@ late final credentialManager = toor.registerLazySingleton<ICredentialManager>(
 );
 ```
 
+#### Async Factory
+Async factories are locators that are asynchronously created each time you get them.
+
+Use `Toor.registerFactoryAsync` to create async factory locators:
+
+```dart
+final toor = Toor.instance;
+
+late final dataPersisterFactory = toor.registerFactoryAsync<IDataPersister>(
+  () async => SharedPreferencesDataPersister(
+    sharedPreferences: await SharedPreferences.getInstance(),
+  ),
+);
+```
+
+Await the creation of your factory to obtain and use it:
+
+```dart
+final dataPersister = await dataPersisterFactory();
+dataPersister.saveData('big');
+```
+
 ### Advanced usage
 
 #### Resetting lazy singletons 

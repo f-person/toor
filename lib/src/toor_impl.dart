@@ -27,6 +27,12 @@ class _ToorImpl implements Toor {
     return lazySingleton;
   }
 
+  /// {@macro ToorRegisterFactoryAsync}
+  @override
+  ToorLocatorAsync<T> registerFactoryAsync<T>(FactoryFuncAsync<T> factoryFunc) {
+    return _ToorFactoryAsyncImpl(factoryFunc);
+  }
+
   /// {@macro ToorReset}
   @override
   void reset() {

@@ -8,6 +8,9 @@ part 'toor_test.dart';
 /// Signature for factory and lazy singleton creator functions.
 typedef FactoryFunc<T> = T Function();
 
+/// Signature for asynchronous factories.
+typedef FactoryFuncAsync<T> = Future<T> Function();
+
 /// A simple service locator manager that lets you register compile-time safe
 /// factories and lazy singletons.
 abstract class Toor {
@@ -43,6 +46,14 @@ abstract class Toor {
     FactoryFunc<T> lazySingletonCreator,
   );
 
+  /// {@template ToorRegisterFactoryAsync}
+  /// Asynchronously registers a factory via [factoryFunc].
+  ///
+  /// This might be useful when injecting a dependency to [T], that can only
+  /// be obtained asynchronously (e.g. `SharedPreferences.getInstance()`).
+  /// {@endtemplate}
+  ToorLocatorAsync<T> registerFactoryAsync<T>(FactoryFuncAsync<T> factoryFunc);
+
   /// {@template ToorReset}
   /// Resets all registered lazy singletons.
   ///
@@ -72,4 +83,16 @@ abstract class ToorLocator<T> {
   ///
   /// See also [_ToorLazySingletonImpl], [_ToorFactoryImpl].
   void reset();
+}
+
+/// The class for using async factories registered with [Toor].
+abstract class ToorLocatorAsync<T> {
+  const ToorLocatorAsync();
+
+  /// Creates the instance registered in this [ToorLocator].
+  Future<T> get();
+
+  /// Makes instances of `ToorLocatorAsync` callable by implementing
+  /// the function interface.
+  Future<T> call() => get();
 }
