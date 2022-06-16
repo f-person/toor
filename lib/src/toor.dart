@@ -1,15 +1,11 @@
 import 'package:meta/meta.dart';
 
-part 'toor_impl.dart';
-part 'toor_factory_impl.dart';
-part 'toor_lazy_singleton_impl.dart';
-part 'toor_test.dart';
-
-/// Signature for factory and lazy singleton creator functions.
-typedef FactoryFunc<T> = T Function();
-
-/// Signature for asynchronous factories.
-typedef FactoryFuncAsync<T> = Future<T> Function();
+part 'toor_locator/toor_locator.dart';
+part 'toor_locator/toor_locator_async.dart';
+part 'toor_test/toor_test.dart';
+part 'toor_impl/toor_impl.dart';
+part 'toor_impl/toor_factory_impl.dart';
+part 'toor_impl/toor_lazy_singleton_impl.dart';
 
 /// A simple service locator manager that lets you register compile-time safe
 /// factories and lazy singletons.
@@ -62,37 +58,4 @@ abstract class Toor {
   /// the `lazySingletonCreator` callback, provided to [registerLazySingleton].
   /// {@endtemplate}
   void reset();
-}
-
-/// The class for using factories or singletons registered with [Toor].
-abstract class ToorLocator<T> {
-  const ToorLocator();
-
-  /// Retrieves or creates the instance registered in this [ToorLocator].
-  T get();
-
-  /// Makes instances of `ToorLocator` callable by implementing
-  /// the function interface.
-  T call() => get();
-
-  /// If this [ToorLocator] is a lazy singleton, the
-  /// current instance will be deleted, and a new one will be called on the
-  /// next [get] call.
-  ///
-  /// Nothing will happen if this [ToorLocator] is a factory.
-  ///
-  /// See also [_ToorLazySingletonImpl], [_ToorFactoryImpl].
-  void reset();
-}
-
-/// The class for using async factories registered with [Toor].
-abstract class ToorLocatorAsync<T> {
-  const ToorLocatorAsync();
-
-  /// Creates the instance registered in this [ToorLocator].
-  Future<T> get();
-
-  /// Makes instances of `ToorLocatorAsync` callable by implementing
-  /// the function interface.
-  Future<T> call() => get();
 }

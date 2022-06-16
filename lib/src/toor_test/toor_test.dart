@@ -1,4 +1,4 @@
-part of 'toor.dart';
+part of '../toor.dart';
 
 @visibleForTesting
 extension ToorLocatorOverrider<T> on ToorLocator<T> {

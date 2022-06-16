@@ -1,4 +1,4 @@
-part of 'toor.dart';
+part of '../toor.dart';
 
 class _ToorFactoryImpl<T> extends ToorLocator<T> {
   _ToorFactoryImpl(this.factoryFunc);

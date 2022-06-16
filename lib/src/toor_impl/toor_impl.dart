@@ -1,4 +1,4 @@
-part of 'toor.dart';
+part of '../toor.dart';
 
 /// The default implementation of [Toor].
 class _ToorImpl implements Toor {

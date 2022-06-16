@@ -1,4 +1,4 @@
-part of 'toor.dart';
+part of '../toor.dart';
 
 class _ToorLazySingletonImpl<T> extends ToorLocator<T> {
   _ToorLazySingletonImpl(this.lazySingletonCreator);
