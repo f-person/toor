@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 
+part 'toor_locator/resettable_locator.dart';
 part 'toor_locator/toor_locator.dart';
 part 'toor_locator/toor_locator_async.dart';
 part 'toor_test/toor_test.dart';
@@ -29,17 +30,38 @@ abstract class Toor {
     return _ToorImpl();
   }
 
+  /// {@template ToorRegisterLazySingleton}
+  /// Registers a singleton which will be created once called.
+  /// {@endtemplate}
+  ToorLocator<T> registerLazySingleton<T>(
+    FactoryFunc<T> lazySingletonCreator,
+  );
+
   /// {@template ToorRegisterFactory}
   /// Registers a factory (i. e. a new instance of [T] will be created via
   /// [factoryFunc] on every call of [ToorFactory.create()]).
   /// {@endtemplate}
   ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc);
 
-  /// {@template ToorRegisterLazySingleton}
-  /// Registers a singleton which will be created once called.
+  /// {@template ToorRegisterFactoryWithOneParam}
+  /// {@macro ToorRegisterFactory}
+  ///
+  /// Factories, created with [registerFactoryWithOneParameter] allow you to
+  /// pass a single parameter to the factory you're creating.
   /// {@endtemplate}
-  ToorLocator<T> registerLazySingleton<T>(
-    FactoryFunc<T> lazySingletonCreator,
+  ToorLocatorWithOneParameter<T, P1> registerFactoryWithOneParameter<T, P1>(
+    FactoryFuncWithOneParameter<T, P1> factoryFunc,
+  );
+
+  /// {@template ToorRegisterFactoryWithTwoParams}
+  /// {@macro ToorRegisterFactory}
+  ///
+  /// Factories, created with [registerFactoryWithTwoParameters] allow you to
+  /// pass two parameters to the factory you're creating.
+  /// {@endtemplate}
+  ToorLocatorWithTwoParameters<T, P1, P2>
+      registerFactoryWithTwoParameters<T, P1, P2>(
+    FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
   );
 
   /// {@template ToorRegisterFactoryAsync}

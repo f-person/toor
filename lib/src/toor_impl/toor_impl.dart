@@ -10,12 +10,6 @@ class _ToorImpl implements Toor {
   /// from [_locatorReferences] on next [reset] call.
   final List<WeakReference<ToorLocator>> _locatorReferences = [];
 
-  /// {@macro ToorRegisterFactory}
-  @override
-  ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc) {
-    return _ToorFactoryImpl(factoryFunc);
-  }
-
   /// {@macro ToorRegisterLazySingleton}
   @override
   ToorLocator<T> registerLazySingleton<T>(
@@ -25,6 +19,29 @@ class _ToorImpl implements Toor {
     _locatorReferences.add(WeakReference(lazySingleton));
 
     return lazySingleton;
+  }
+
+  /// {@macro ToorRegisterFactory}
+  @override
+  ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc) {
+    return _ToorFactoryImpl(factoryFunc);
+  }
+
+  /// {@macro ToorRegisterFactoryWithOneParam}
+  @override
+  ToorLocatorWithOneParameter<T, P1> registerFactoryWithOneParameter<T, P1>(
+    FactoryFuncWithOneParameter<T, P1> factoryFunc,
+  ) {
+    return _ToorFactoryWithOneParameterImpl(factoryFunc);
+  }
+
+  /// {@macro ToorRegisterFactoryWithTwoParams}
+  @override
+  ToorLocatorWithTwoParameters<T, P1, P2>
+      registerFactoryWithTwoParameters<T, P1, P2>(
+    FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
+  ) {
+    return _ToorFactoryWithTwoParametersImpl(factoryFunc);
   }
 
   /// {@macro ToorRegisterFactoryAsync}

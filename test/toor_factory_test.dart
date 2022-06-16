@@ -2,6 +2,12 @@ import 'package:test/test.dart';
 import 'package:toor/toor_test.dart';
 
 void main() {
+  void testFactoryReset(ResettableLocator locator) {
+    test('reset does not throw anything', () {
+      expect(locator.reset, isNot(throwsException));
+    });
+  }
+
   group('ToorFactory', () {
     test('returns a new instance when called', () {
       final objectFactory = Toor.instance.registerFactory(() => Object());
@@ -29,15 +35,52 @@ void main() {
       expect(identical(factory1(), factory2()), isFalse);
     });
 
-    test(
-      'reset does not throw anything',
-      () {
-        Object _factoryFunc() => Object();
+    testFactoryReset(Toor.instance.registerFactory(() => Object()));
+  });
 
-        final testFactory = Toor.instance.registerFactory(_factoryFunc);
+  group('ToorFactoryWithOneParameter', () {
+    test('uses the parameter as intended', () {
+      final toor = Toor.instance;
 
-        expect(testFactory.reset, isNot(throwsException));
-      },
+      final stringFactory =
+          toor.registerFactoryWithOneParameter<String, String>(
+        (param1) => param1,
+      );
+
+      const shrug = r'¯\_(ツ)_/¯';
+      final shruggingFactory =
+          toor.registerFactoryWithOneParameter<String, String>(
+        (param1) => '$param1 $shrug',
+      );
+
+      expect(stringFactory('Can you hear me?'), 'Can you hear me?');
+      expect(
+        shruggingFactory('Is this the real life?'),
+        'Is this the real life? $shrug',
+      );
+    });
+
+    testFactoryReset(
+      Toor.instance.registerFactoryWithOneParameter((param1) => param1),
+    );
+  });
+
+  group('ToorFactoryWithTwoParameters', () {
+    test('uses the parameter as intended', () {
+      final toor = Toor.instance;
+
+      final wordJoinerFactory =
+          toor.registerFactoryWithTwoParameters<String, Object, Object>(
+        (param1, param2) => '$param1 $param2',
+      );
+
+      expect(wordJoinerFactory('Amor', 'Fati'), 'Amor Fati');
+    });
+
+    testFactoryReset(
+      Toor.instance.registerFactoryWithTwoParameters(
+        (param1, param2) => param1 == param2,
+      ),
     );
   });
 
