@@ -50,6 +50,24 @@ class _ToorImpl implements Toor {
     return _ToorFactoryAsyncImpl(factoryFunc);
   }
 
+  /// {@macro ToorRegisterFactoryAsyncWithOneParam}
+  @override
+  ToorLocatorAsyncWithOneParameter<T, P1>
+      registerFactoryAsyncWithOneParameter<T, P1>(
+    FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
+  ) {
+    return _ToorFactoryAsyncWithOneParameterImpl(factoryFunc);
+  }
+
+  /// {@macro ToorRegisterFactoryAsyncWithTwoParams}
+  @override
+  ToorLocatorAsyncWithTwoParameters<T, P1, P2>
+      registerFactoryAsyncWithTwoParameters<T, P1, P2>(
+    FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
+  ) {
+    return _ToorFactoryAsyncWithTwoParametersImpl(factoryFunc);
+  }
+
   /// {@macro ToorReset}
   @override
   void reset() {

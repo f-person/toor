@@ -13,12 +13,19 @@ typedef FactoryFuncWithTwoParameters<T, P1, P2> = T Function(
 );
 
 /// The base for all types of locators.
-abstract class ToorLocatorBase implements ResettableLocator {}
+abstract class ToorLocatorBase implements ResettableLocator {
+  const ToorLocatorBase();
+
+  @override
+  void reset() {
+    // Overriden by default since not every locator does something on reset.
+  }
+}
 
 /// {@template ToorLocatorBase}
 /// Used for interacting with factories or singletons registered with [Toor].
 /// {@endtemplate}
-abstract class ToorLocator<T> implements ToorLocatorBase {
+abstract class ToorLocator<T> extends ToorLocatorBase {
   const ToorLocator();
 
   /// {@template ToorLocatorGet}
@@ -36,7 +43,7 @@ abstract class ToorLocator<T> implements ToorLocatorBase {
 /// {@macro ToorLocatorBase}
 ///
 /// This type of locators allow you to create factories with one parameter.
-abstract class ToorLocatorWithOneParameter<T, P1> implements ToorLocatorBase {
+abstract class ToorLocatorWithOneParameter<T, P1> extends ToorLocatorBase {
   const ToorLocatorWithOneParameter();
 
   /// {@macro ToorLocatorGet}
@@ -49,8 +56,7 @@ abstract class ToorLocatorWithOneParameter<T, P1> implements ToorLocatorBase {
 /// {@macro ToorLocatorBase}
 ///
 /// This type of locators allow you to create factories with two parameters.
-abstract class ToorLocatorWithTwoParameters<T, P1, P2>
-    implements ToorLocatorBase {
+abstract class ToorLocatorWithTwoParameters<T, P1, P2> extends ToorLocatorBase {
   const ToorLocatorWithTwoParameters();
 
   /// {@macro ToorLocatorGet}

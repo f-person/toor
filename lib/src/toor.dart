@@ -1,12 +1,12 @@
 import 'package:meta/meta.dart';
 
+part 'toor_impl/toor_factory_impl.dart';
+part 'toor_impl/toor_impl.dart';
+part 'toor_impl/toor_lazy_singleton_impl.dart';
 part 'toor_locator/resettable_locator.dart';
 part 'toor_locator/toor_locator.dart';
 part 'toor_locator/toor_locator_async.dart';
 part 'toor_test/toor_test.dart';
-part 'toor_impl/toor_impl.dart';
-part 'toor_impl/toor_factory_impl.dart';
-part 'toor_impl/toor_lazy_singleton_impl.dart';
 
 /// A simple service locator manager that lets you register compile-time safe
 /// factories and lazy singletons.
@@ -65,12 +65,34 @@ abstract class Toor {
   );
 
   /// {@template ToorRegisterFactoryAsync}
-  /// Asynchronously registers a factory via [factoryFunc].
+  /// Registers an asynchronous factory via [factoryFunc].
   ///
   /// This might be useful when injecting a dependency to [T], that can only
   /// be obtained asynchronously (e.g. `SharedPreferences.getInstance()`).
   /// {@endtemplate}
   ToorLocatorAsync<T> registerFactoryAsync<T>(FactoryFuncAsync<T> factoryFunc);
+
+  /// {@template ToorRegisterFactoryAsyncWithOneParam}
+  /// {@macro ToorRegisterFactoryAsync}
+  ///
+  /// Factories, created with [registerFactoryAsyncWithOneParameter] allow
+  /// you pass a single parameter to the factory you're creating.
+  /// {@endtemplate}
+  ToorLocatorAsyncWithOneParameter<T, P1>
+      registerFactoryAsyncWithOneParameter<T, P1>(
+    FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
+  );
+
+  /// {@template ToorRegisterFactoryAsyncWithTwoParams}
+  /// {@macro ToorRegisterFactoryAsync}
+  ///
+  /// Factories, created with [registerFactoryWithTwoParameters] allow you to
+  /// pass two parameters to the factory you're creating.
+  /// {@endtemplate}
+  ToorLocatorAsyncWithTwoParameters<T, P1, P2>
+      registerFactoryAsyncWithTwoParameters<T, P1, P2>(
+    FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
+  );
 
   /// {@template ToorReset}
   /// Resets all registered lazy singletons.
