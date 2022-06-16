@@ -8,7 +8,7 @@ class _ToorImpl implements Toor {
   /// to the variable, holding a [ToorLocator] (i. e. make it null).
   /// In this case it will be garbage-collected and automatically removed
   /// from [_locatorReferences] on next [reset] call.
-  final List<WeakReference<ToorLocator>> _locatorReferences = [];
+  final List<WeakReference<ToorLocatorBase>> _locatorReferences = [];
 
   /// {@macro ToorRegisterLazySingleton}
   @override

@@ -12,10 +12,13 @@ typedef FactoryFuncWithTwoParameters<T, P1, P2> = T Function(
   P2 param2,
 );
 
+/// The base for all types of locators.
+abstract class ToorLocatorBase implements ResettableLocator {}
+
 /// {@template ToorLocatorBase}
 /// Used for interacting with factories or singletons registered with [Toor].
 /// {@endtemplate}
-abstract class ToorLocator<T> implements ResettableLocator {
+abstract class ToorLocator<T> implements ToorLocatorBase {
   const ToorLocator();
 
   /// {@template ToorLocatorGet}
@@ -33,7 +36,7 @@ abstract class ToorLocator<T> implements ResettableLocator {
 /// {@macro ToorLocatorBase}
 ///
 /// This type of locators allow you to create factories with one parameter.
-abstract class ToorLocatorWithOneParameter<T, P1> implements ResettableLocator {
+abstract class ToorLocatorWithOneParameter<T, P1> implements ToorLocatorBase {
   const ToorLocatorWithOneParameter();
 
   /// {@macro ToorLocatorGet}
@@ -47,7 +50,7 @@ abstract class ToorLocatorWithOneParameter<T, P1> implements ResettableLocator {
 ///
 /// This type of locators allow you to create factories with two parameters.
 abstract class ToorLocatorWithTwoParameters<T, P1, P2>
-    implements ResettableLocator {
+    implements ToorLocatorBase {
   const ToorLocatorWithTwoParameters();
 
   /// {@macro ToorLocatorGet}
