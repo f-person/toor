@@ -1,13 +1,10 @@
 import 'package:test/test.dart';
+
 import 'package:toor/toor_test.dart';
 
-void main() {
-  void testFactoryReset(ResettableLocator locator) {
-    test('reset does not throw anything', () {
-      expect(locator.reset, isNot(throwsException));
-    });
-  }
+import 'test_utils.dart';
 
+void main() {
   group('ToorFactory', () {
     test('returns a new instance when called', () {
       final objectFactory = Toor.instance.registerFactory(() => Object());
@@ -66,7 +63,7 @@ void main() {
   });
 
   group('ToorFactoryWithTwoParameters', () {
-    test('uses the parameter as intended', () {
+    test('uses the parameters as intended', () {
       final toor = Toor.instance;
 
       final wordJoinerFactory =
@@ -81,42 +78,6 @@ void main() {
       Toor.instance.registerFactoryWithTwoParameters(
         (param1, param2) => param1 == param2,
       ),
-    );
-  });
-
-  group('ToorFactoryAsync', () {
-    test('returns a new instance when called', () async {
-      final objectFactory = Toor.instance.registerFactoryAsync(
-        () async => Object(),
-      );
-      final object1 = await objectFactory();
-      final object2 = await objectFactory();
-
-      expect(identical(object1, object2), isFalse);
-    });
-
-    test('creates different instances of ToorLocatorAsync', () async {
-      final toor = Toor.instance;
-
-      final factory1 = toor.registerFactoryAsync(() async => Object());
-      final factory2 = toor.registerFactoryAsync(() async => Object());
-
-      expect(identical(factory1, factory2), isFalse);
-    });
-
-    test(
-      'different ToorFactoryAsyncs create different instances of T',
-      () async {
-        final toor = Toor.instance;
-
-        final factory1 = toor.registerFactoryAsync(() async => Object());
-        final factory2 = toor.registerFactoryAsync(() async => Object());
-
-        final object1 = await factory1();
-        final object2 = await factory2();
-
-        expect(identical(object1, object2), isFalse);
-      },
     );
   });
 }
