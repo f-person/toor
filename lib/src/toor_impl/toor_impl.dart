@@ -8,13 +8,7 @@ class _ToorImpl implements Toor {
   /// to the variable, holding a [ToorLocator] (i. e. make it null).
   /// In this case it will be garbage-collected and automatically removed
   /// from [_locatorReferences] on next [reset] call.
-  final List<WeakReference<ToorLocator>> _locatorReferences = [];
-
-  /// {@macro ToorRegisterFactory}
-  @override
-  ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc) {
-    return _ToorFactoryImpl(factoryFunc);
-  }
+  final List<WeakReference<ToorLocatorBase>> _locatorReferences = [];
 
   /// {@macro ToorRegisterLazySingleton}
   @override
@@ -27,10 +21,51 @@ class _ToorImpl implements Toor {
     return lazySingleton;
   }
 
+  /// {@macro ToorRegisterFactory}
+  @override
+  ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc) {
+    return _ToorFactoryImpl(factoryFunc);
+  }
+
+  /// {@macro ToorRegisterFactoryWithOneParam}
+  @override
+  ToorLocatorWithOneParameter<T, P1> registerFactoryWithOneParameter<T, P1>(
+    FactoryFuncWithOneParameter<T, P1> factoryFunc,
+  ) {
+    return _ToorFactoryWithOneParameterImpl(factoryFunc);
+  }
+
+  /// {@macro ToorRegisterFactoryWithTwoParams}
+  @override
+  ToorLocatorWithTwoParameters<T, P1, P2>
+      registerFactoryWithTwoParameters<T, P1, P2>(
+    FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
+  ) {
+    return _ToorFactoryWithTwoParametersImpl(factoryFunc);
+  }
+
   /// {@macro ToorRegisterFactoryAsync}
   @override
   ToorLocatorAsync<T> registerFactoryAsync<T>(FactoryFuncAsync<T> factoryFunc) {
     return _ToorFactoryAsyncImpl(factoryFunc);
+  }
+
+  /// {@macro ToorRegisterFactoryAsyncWithOneParam}
+  @override
+  ToorLocatorAsyncWithOneParameter<T, P1>
+      registerFactoryAsyncWithOneParameter<T, P1>(
+    FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
+  ) {
+    return _ToorFactoryAsyncWithOneParameterImpl(factoryFunc);
+  }
+
+  /// {@macro ToorRegisterFactoryAsyncWithTwoParams}
+  @override
+  ToorLocatorAsyncWithTwoParameters<T, P1, P2>
+      registerFactoryAsyncWithTwoParameters<T, P1, P2>(
+    FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
+  ) {
+    return _ToorFactoryAsyncWithTwoParametersImpl(factoryFunc);
   }
 
   /// {@macro ToorReset}

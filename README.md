@@ -82,6 +82,44 @@ final dataPersister = await dataPersisterFactory();
 dataPersister.saveData('big');
 ```
 
+#### Factories with parameters
+
+You can also create factories that accept 1 or 2 parameters:
+
+```dart
+final toor = Toor.instance;
+
+final personFactory = toor.registerFactoryWithOneParameter<Person, String>(
+  (name) => Person(name),
+);
+
+final vehicleFactory = toor.registerFactoryWithTwoParameters<Vehicle, String, int>(
+  (name, productionYear) => Vehicle(name, productionYear);
+);
+
+class Person {
+  const Person(this.name);
+
+  final String name;
+}
+
+class Vehicle {
+  const Vehicle(this.name, this.productionYear);
+
+  final String name;
+  final int productionYear;
+}
+
+void main() {
+  // Both are compile-time safe and know about the types.
+  final driver = personFactory('Doc');
+  final vehicle = vehicleFactory('DeLorean', 1981);
+}
+```
+
+Async factories are also supported via `registerFactoryAsyncWithOneParameter`
+and `registerFactoryAsyncWithTwoParameters`.
+
 ### Advanced usage
 
 #### Resetting lazy singletons 
