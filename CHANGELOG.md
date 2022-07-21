@@ -1,3 +1,7 @@
+## 0.1.5
+
+Fix deprecated methods' usage in README.
+
 ## 0.1.4
 
 Renamed functions for registering factories with parameters 

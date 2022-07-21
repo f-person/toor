@@ -90,11 +90,11 @@ You can also create factories that accept 1 or 2 parameters:
 ```dart
 final toor = Toor.instance;
 
-final personFactory = toor.registerFactoryWithOneParameter<Person, String>(
+final personFactory = toor.registerFactoryWithParam<Person, String>(
   (name) => Person(name),
 );
 
-final vehicleFactory = toor.registerFactoryWithTwoParameters<Vehicle, String, int>(
+final vehicleFactory = toor.registerFactoryWithTwoParams<Vehicle, String, int>(
   (name, productionYear) => Vehicle(name, productionYear);
 );
 
@@ -118,8 +118,8 @@ void main() {
 }
 ```
 
-Async factories are also supported via `registerFactoryAsyncWithOneParameter`
-and `registerFactoryAsyncWithTwoParameters`.
+Async factories are also supported via `registerFactoryAsyncWithParam`
+and `registerFactoryAsyncWithTwoParams`.
 
 ### Advanced usage
 
