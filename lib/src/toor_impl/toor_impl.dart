@@ -79,35 +79,4 @@ class _ToorImpl implements Toor {
       }
     }
   }
-
-  @override
-  ToorLocatorWithOneParameter<T, P1> registerFactoryWithOneParameter<T, P1>(
-    FactoryFuncWithOneParameter<T, P1> factoryFunc,
-  ) {
-    return registerFactoryWithOneParameter(factoryFunc);
-  }
-
-  @override
-  ToorLocatorWithTwoParameters<T, P1, P2>
-      registerFactoryWithTwoParameters<T, P1, P2>(
-    FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
-  ) {
-    return registerFactoryWithTwoParameters(factoryFunc);
-  }
-
-  @override
-  ToorLocatorAsyncWithOneParameter<T, P1>
-      registerFactoryAsyncWithOneParameter<T, P1>(
-    FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
-  ) {
-    return registerFactoryAsyncWithParam(factoryFunc);
-  }
-
-  @override
-  ToorLocatorAsyncWithTwoParameters<T, P1, P2>
-      registerFactoryAsyncWithTwoParameters<T, P1, P2>(
-    FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
-  ) {
-    return registerFactoryAsyncWithTwoParameters(factoryFunc);
-  }
 }

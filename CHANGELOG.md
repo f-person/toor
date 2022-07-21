@@ -1,3 +1,7 @@
+## 1.0.0
+
+**BREAKING**: Removed the deprecated methods mentioned in `0.1.4`.
+
 ## 0.1.5
 
 Fix deprecated methods' usage in README.
