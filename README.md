@@ -6,17 +6,18 @@ Toor makes service locators compile-time safe and easy to manage.
 ## 🚀 Getting Started
 
 Define your dependencies somewhere in the project.
-It is recommended to make your locators lazily initialized via using
-the `late` keyword so that they are created only when used.
+All global and static variables are lazy by default
+so you shouldn't worry about consuming memory that's not used
+by registering stuff.
 
 ```dart
 final toor = Toor.instance;
 
-late final httpClientSingleton = toor.registerLazySingleton<IHttpClient>(
+final httpClientSingleton = toor.registerLazySingleton<IHttpClient>(
   DioHttpClientImpl.new,
 );
 
-late final authRepositoryFactory = toor.registerFactory<IAuthRepository>(
+final authRepositoryFactory = toor.registerFactory<IAuthRepository>(
   () => AuthRepositoryImpl(httpClient: httpClientSingleton()),
 );
 ```
@@ -40,7 +41,7 @@ Use `Toor.registerFactory` to create factory locators:
 ```dart
 final toor = Toor.instance;
 
-late final authRepositoryFactory = toor.registerFactory<IAuthRepository>(
+final authRepositoryFactory = toor.registerFactory<IAuthRepository>(
   AuthRepositoryImpl.new,
 );
 ```
@@ -55,7 +56,7 @@ Use `Toor.registerLazySingleton` to create lazy singleton locators:
 ```dart
 final toor = Toor.instance;
 
-late final credentialManager = toor.registerLazySingleton<ICredentialManager>(
+final credentialManager = toor.registerLazySingleton<ICredentialManager>(
   CredentialManagerImpl.new,
 );
 ```
@@ -68,7 +69,7 @@ Use `Toor.registerFactoryAsync` to create async factory locators:
 ```dart
 final toor = Toor.instance;
 
-late final dataPersisterFactory = toor.registerFactoryAsync<IDataPersister>(
+final dataPersisterFactory = toor.registerFactoryAsync<IDataPersister>(
   () async => SharedPreferencesDataPersister(
     sharedPreferences: await SharedPreferences.getInstance(),
   ),
@@ -131,7 +132,7 @@ final toor = Toor.instance;
 
 String value = 'Initial';
 
-late final lazySingleton = toor.registerLazySingleton<String>(
+final lazySingleton = toor.registerLazySingleton<String>(
   () => value,
 );
 
@@ -156,7 +157,7 @@ final toor = Toor.instance;
 
 String value = 'Initial';
 
-late final lazySingleton = toor.registerLazySingleton<String>(
+final lazySingleton = toor.registerLazySingleton<String>(
   () => value,
 );
 
@@ -182,11 +183,11 @@ single domain (e.g. reset all singletons that hold user data on logout).
 final authToor = Toor.newInstance();
 final analyticsToor = Toor.newInstance();
 
-late final credentialManager = authToor.registerLazySingleton<ICredentialManager>(
+final credentialManager = authToor.registerLazySingleton<ICredentialManager>(
   CredentialManagerImpl.new,
 );
 
-late final sessionRecorder = authToor.registerLazySingleton<ISessionRecorder>(
+final sessionRecorder = authToor.registerLazySingleton<ISessionRecorder>(
   SessionRecorderImpl(upload: false),
 );
 
@@ -205,7 +206,7 @@ There are two ways to achieve that with Toor:
 ```dart
 final toor = Toor.instance;
 
-late final authManager = toor.registerLazySingleton<IAuthManager>(
+final authManager = toor.registerLazySingleton<IAuthManager>(
   flavor.isTesting ? MockAuthManager() : AuthManagerImpl(),
 );
 ```
@@ -218,7 +219,7 @@ import 'package:toor/toor.dart';
 
 final toor = Toor.instance;
 
-late final authManager = toor.registerLazySingleton<IAuthManager>(
+final authManager = toor.registerLazySingleton<IAuthManager>(
   AuthManagerImpl.new,
 );
 ```

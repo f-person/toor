@@ -1,6 +1,6 @@
 name: toor
 description: Compile-time safe and easy to manage service locators.
-version: 0.1.2
+version: 0.1.3
 
 homepage: https://github.com/f-person/toor
 repository: https://github.com/f-person/toor

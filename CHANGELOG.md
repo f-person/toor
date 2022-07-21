@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Fix documentation regarding lazy initialization.
+
 ## 0.1.2
 
 - Add factories with params
