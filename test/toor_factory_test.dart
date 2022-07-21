@@ -39,14 +39,12 @@ void main() {
     test('uses the parameter as intended', () {
       final toor = Toor.instance;
 
-      final stringFactory =
-          toor.registerFactoryWithOneParameter<String, String>(
+      final stringFactory = toor.registerFactoryWithParam<String, String>(
         (param1) => param1,
       );
 
       const shrug = r'¯\_(ツ)_/¯';
-      final shruggingFactory =
-          toor.registerFactoryWithOneParameter<String, String>(
+      final shruggingFactory = toor.registerFactoryWithParam<String, String>(
         (param1) => '$param1 $shrug',
       );
 
@@ -58,7 +56,7 @@ void main() {
     });
 
     testFactoryReset(
-      Toor.instance.registerFactoryWithOneParameter((param1) => param1),
+      Toor.instance.registerFactoryWithParam((param1) => param1),
     );
   });
 
@@ -67,7 +65,7 @@ void main() {
       final toor = Toor.instance;
 
       final wordJoinerFactory =
-          toor.registerFactoryWithTwoParameters<String, Object, Object>(
+          toor.registerFactoryWithTwoParams<String, Object, Object>(
         (param1, param2) => '$param1 $param2',
       );
 
@@ -75,7 +73,7 @@ void main() {
     });
 
     testFactoryReset(
-      Toor.instance.registerFactoryWithTwoParameters(
+      Toor.instance.registerFactoryWithTwoParams(
         (param1, param2) => param1 == param2,
       ),
     );

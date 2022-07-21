@@ -43,14 +43,14 @@ void main() {
 
   group('ToorFactoryAsyncWithOneParameter', () {
     test('uses the parameter as intended', () async {
-      final asyncFactory = Toor.instance.registerFactoryAsyncWithOneParameter(
+      final asyncFactory = Toor.instance.registerFactoryAsyncWithParam(
         (String string) async => '$string future',
       );
 
       expect(await asyncFactory('back to the'), 'back to the future');
     });
 
-    testFactoryReset(Toor.instance.registerFactoryAsyncWithOneParameter(
+    testFactoryReset(Toor.instance.registerFactoryAsyncWithParam(
       (Object obj) async => obj,
     ));
   });
@@ -60,7 +60,7 @@ void main() {
       final toor = Toor.instance;
 
       final wordJoinerFactory =
-          toor.registerFactoryAsyncWithTwoParameters<String, Object, Object>(
+          toor.registerFactoryAsyncWithTwoParams<String, Object, Object>(
         (param1, param2) async => '$param1 $param2',
       );
 

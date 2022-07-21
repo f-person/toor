@@ -29,7 +29,7 @@ class _ToorImpl implements Toor {
 
   /// {@macro ToorRegisterFactoryWithOneParam}
   @override
-  ToorLocatorWithOneParameter<T, P1> registerFactoryWithOneParameter<T, P1>(
+  ToorLocatorWithOneParameter<T, P1> registerFactoryWithParam<T, P1>(
     FactoryFuncWithOneParameter<T, P1> factoryFunc,
   ) {
     return _ToorFactoryWithOneParameterImpl(factoryFunc);
@@ -38,7 +38,7 @@ class _ToorImpl implements Toor {
   /// {@macro ToorRegisterFactoryWithTwoParams}
   @override
   ToorLocatorWithTwoParameters<T, P1, P2>
-      registerFactoryWithTwoParameters<T, P1, P2>(
+      registerFactoryWithTwoParams<T, P1, P2>(
     FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
   ) {
     return _ToorFactoryWithTwoParametersImpl(factoryFunc);
@@ -52,8 +52,7 @@ class _ToorImpl implements Toor {
 
   /// {@macro ToorRegisterFactoryAsyncWithOneParam}
   @override
-  ToorLocatorAsyncWithOneParameter<T, P1>
-      registerFactoryAsyncWithOneParameter<T, P1>(
+  ToorLocatorAsyncWithOneParameter<T, P1> registerFactoryAsyncWithParam<T, P1>(
     FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
   ) {
     return _ToorFactoryAsyncWithOneParameterImpl(factoryFunc);
@@ -62,7 +61,7 @@ class _ToorImpl implements Toor {
   /// {@macro ToorRegisterFactoryAsyncWithTwoParams}
   @override
   ToorLocatorAsyncWithTwoParameters<T, P1, P2>
-      registerFactoryAsyncWithTwoParameters<T, P1, P2>(
+      registerFactoryAsyncWithTwoParams<T, P1, P2>(
     FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
   ) {
     return _ToorFactoryAsyncWithTwoParametersImpl(factoryFunc);
@@ -79,5 +78,36 @@ class _ToorImpl implements Toor {
         lazySingleton.reset();
       }
     }
+  }
+
+  @override
+  ToorLocatorWithOneParameter<T, P1> registerFactoryWithOneParameter<T, P1>(
+    FactoryFuncWithOneParameter<T, P1> factoryFunc,
+  ) {
+    return registerFactoryWithOneParameter(factoryFunc);
+  }
+
+  @override
+  ToorLocatorWithTwoParameters<T, P1, P2>
+      registerFactoryWithTwoParameters<T, P1, P2>(
+    FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
+  ) {
+    return registerFactoryWithTwoParameters(factoryFunc);
+  }
+
+  @override
+  ToorLocatorAsyncWithOneParameter<T, P1>
+      registerFactoryAsyncWithOneParameter<T, P1>(
+    FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
+  ) {
+    return registerFactoryAsyncWithParam(factoryFunc);
+  }
+
+  @override
+  ToorLocatorAsyncWithTwoParameters<T, P1, P2>
+      registerFactoryAsyncWithTwoParameters<T, P1, P2>(
+    FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
+  ) {
+    return registerFactoryAsyncWithTwoParameters(factoryFunc);
   }
 }

@@ -46,9 +46,14 @@ abstract class Toor {
   /// {@template ToorRegisterFactoryWithOneParam}
   /// {@macro ToorRegisterFactory}
   ///
-  /// Factories, created with [registerFactoryWithOneParameter] allow you to
+  /// Factories, created with [registerFactoryWithParam] allow you to
   /// pass a single parameter to the factory you're creating.
   /// {@endtemplate}
+  ToorLocatorWithOneParameter<T, P1> registerFactoryWithParam<T, P1>(
+    FactoryFuncWithOneParameter<T, P1> factoryFunc,
+  );
+
+  @Deprecated('Use `registerFactoryWithParam` instead.')
   ToorLocatorWithOneParameter<T, P1> registerFactoryWithOneParameter<T, P1>(
     FactoryFuncWithOneParameter<T, P1> factoryFunc,
   );
@@ -56,9 +61,15 @@ abstract class Toor {
   /// {@template ToorRegisterFactoryWithTwoParams}
   /// {@macro ToorRegisterFactory}
   ///
-  /// Factories, created with [registerFactoryWithTwoParameters] allow you to
+  /// Factories, created with [registerFactoryWithTwoParams] allow you to
   /// pass two parameters to the factory you're creating.
   /// {@endtemplate}
+  ToorLocatorWithTwoParameters<T, P1, P2>
+      registerFactoryWithTwoParams<T, P1, P2>(
+    FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
+  );
+
+  @Deprecated('Use `registerFactoryWithTwoParams` instead.')
   ToorLocatorWithTwoParameters<T, P1, P2>
       registerFactoryWithTwoParameters<T, P1, P2>(
     FactoryFuncWithTwoParameters<T, P1, P2> factoryFunc,
@@ -75,9 +86,14 @@ abstract class Toor {
   /// {@template ToorRegisterFactoryAsyncWithOneParam}
   /// {@macro ToorRegisterFactoryAsync}
   ///
-  /// Factories, created with [registerFactoryAsyncWithOneParameter] allow
+  /// Factories, created with [registerFactoryAsyncWithParam] allow
   /// you pass a single parameter to the factory you're creating.
   /// {@endtemplate}
+  ToorLocatorAsyncWithOneParameter<T, P1> registerFactoryAsyncWithParam<T, P1>(
+    FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
+  );
+
+  @Deprecated('Use `registerFactoryAsyncWithParam` instead.')
   ToorLocatorAsyncWithOneParameter<T, P1>
       registerFactoryAsyncWithOneParameter<T, P1>(
     FactoryFuncAsyncWithOneParameter<T, P1> factoryFunc,
@@ -86,9 +102,15 @@ abstract class Toor {
   /// {@template ToorRegisterFactoryAsyncWithTwoParams}
   /// {@macro ToorRegisterFactoryAsync}
   ///
-  /// Factories, created with [registerFactoryWithTwoParameters] allow you to
+  /// Factories, created with [registerFactoryAsyncWithTwoParams] allow you to
   /// pass two parameters to the factory you're creating.
   /// {@endtemplate}
+  ToorLocatorAsyncWithTwoParameters<T, P1, P2>
+      registerFactoryAsyncWithTwoParams<T, P1, P2>(
+    FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
+  );
+
+  @Deprecated('Use `registerFactoryAsyncWithTwoParams` instead')
   ToorLocatorAsyncWithTwoParameters<T, P1, P2>
       registerFactoryAsyncWithTwoParameters<T, P1, P2>(
     FactoryFuncAsyncWithTwoParameters<T, P1, P2> factoryFunc,
