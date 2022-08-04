@@ -22,5 +22,25 @@ void main() {
 
       expect(identical(initialValue, valueAfterReset), isFalse);
     });
+
+    test('Calls `onDispose` with actual object', () {
+      /// Don't do it like this, use `mocktail` :).
+      /// Just didn't wanna add a library for this single test case.
+      bool didCall = false;
+
+      final lazySingleton = Toor.instance.registerLazySingleton<List<int>>(
+        () => [1984],
+        onDispose: (value) {
+          didCall = true;
+          expect(value.length, 2);
+        },
+      );
+
+      lazySingleton().add(1985);
+
+      Toor.instance.reset();
+
+      expect(didCall, true);
+    });
   });
 }

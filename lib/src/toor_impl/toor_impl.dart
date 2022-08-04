@@ -13,9 +13,13 @@ class _ToorImpl implements Toor {
   /// {@macro ToorRegisterLazySingleton}
   @override
   ToorLocator<T> registerLazySingleton<T>(
-    FactoryFunc<T> lazySingletonCreator,
-  ) {
-    final lazySingleton = _ToorLazySingletonImpl(lazySingletonCreator);
+    FactoryFunc<T> lazySingletonCreator, {
+    DisposeFunc<T>? onDispose,
+  }) {
+    final lazySingleton = _ToorLazySingletonImpl(
+      lazySingletonCreator,
+      onDispose,
+    );
     _locatorReferences.add(WeakReference(lazySingleton));
 
     return lazySingleton;

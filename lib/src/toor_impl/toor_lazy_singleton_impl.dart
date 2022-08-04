@@ -1,9 +1,10 @@
 part of '../toor.dart';
 
 class _ToorLazySingletonImpl<T> extends ToorLocator<T> {
-  _ToorLazySingletonImpl(this.lazySingletonCreator);
+  _ToorLazySingletonImpl(this.lazySingletonCreator, this.onDispose);
 
   late FactoryFunc<T> lazySingletonCreator;
+  late DisposeFunc<T>? onDispose;
 
   late _ToorLazySingletonHolder<T> _instanceHolder = _createInstanceHolder();
 
@@ -14,6 +15,10 @@ class _ToorLazySingletonImpl<T> extends ToorLocator<T> {
 
   @override
   void reset() {
+    if (_instanceHolder.isInitialized) {
+      onDispose?.call(_instanceHolder.instance);
+    }
+
     _instanceHolder = _createInstanceHolder();
   }
 
@@ -27,5 +32,14 @@ class _ToorLazySingletonHolder<T> {
 
   final FactoryFunc<T> lazySingletonCreator;
 
-  late T instance = lazySingletonCreator();
+  late final T instance = _createLazySingleton();
+  bool get isInitialized => _isInitialized;
+
+  bool _isInitialized = false;
+
+  T _createLazySingleton() {
+    _isInitialized = true;
+
+    return lazySingletonCreator();
+  }
 }

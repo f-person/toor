@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:meta/meta.dart';
 
 part 'toor_impl/toor_factory_impl.dart';
@@ -32,10 +34,14 @@ abstract class Toor {
 
   /// {@template ToorRegisterLazySingleton}
   /// Registers a singleton which will be created once called.
+  ///
+  /// [onDispose] is an optional callback that's called when
+  /// resetting the locator (via [reset]).
   /// {@endtemplate}
   ToorLocator<T> registerLazySingleton<T>(
-    FactoryFunc<T> lazySingletonCreator,
-  );
+    FactoryFunc<T> lazySingletonCreator, {
+    DisposeFunc<T>? onDispose,
+  });
 
   /// {@template ToorRegisterFactory}
   /// Registers a factory (i. e. a new instance of [T] will be created via

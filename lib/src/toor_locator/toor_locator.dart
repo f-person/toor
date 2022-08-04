@@ -6,6 +6,9 @@ typedef FactoryFunc<T> = T Function();
 /// Signature for one-parameter factory and lazy singleton creator functions.
 typedef FactoryFuncWithOneParameter<T, P1> = T Function(P1 param1);
 
+/// Signature for `onDispose` parameter of some locators' register function.
+typedef DisposeFunc<T> = void Function(T locator);
+
 /// Signature for two-parameter factory and lazy singleton creator functions.
 typedef FactoryFuncWithTwoParameters<T, P1, P2> = T Function(
   P1 param1,
