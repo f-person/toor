@@ -61,6 +61,28 @@ final credentialManager = toor.registerLazySingleton<ICredentialManager>(
 );
 ```
 
+##### Additional cleanup code with `onDispose`
+
+Toor allows you to pass an optional `onDispose` function
+when registering lazy singletons in order to do some
+clean-up (e.g. close a socket connection, unsubscribe
+from a stream etc). 
+`onDispose` also gives you access to the current value
+of the singleton.
+In order to use it, just pass the `onDispose` argument
+when calling `registerLazySingleton`:
+
+```dart
+final toor = Toor.instance;
+
+final permissionManager = toor.registerLazySingleton<IPermissionManager>(
+  PermissionManagerImpl.new,
+  onDispose: (manager) {
+    manager.dispose();
+  },
+);
+```
+
 #### Async Factory
 Async factories are locators that are asynchronously created each time you get them.
 
