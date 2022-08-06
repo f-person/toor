@@ -1,3 +1,8 @@
+## 1.1.0
+
+Now you can add disposal logic to lazy singletons via passing the `onDispose`
+argument to `registerLazySingleton`.
+
 ## 1.0.0
 
 **BREAKING**: Removed the deprecated methods mentioned in `0.1.4`.
