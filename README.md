@@ -220,6 +220,31 @@ void logout() {
 }
 ```
 
+#### Registering locators with a top level functions
+Toor provides several ways to register a locator in the
+global toor instance:
+  
+```dart
+// You can use `Toor.instance` getter and then call 
+// `registerLazySingleton` or any other method on it.
+final toor = Toor.instance;
+
+final httpClientSingleton = toor.registerLazySingleton<IHttpClient>(
+  DioHttpClientImpl.new,
+);
+
+// Or you can use a top level function with the same name 
+// which basically will call this method on the `Toor.instance`.
+final httpClientSingleton = registerLazySingleton<IHttpClient>(
+  DioHttpClientImpl.new,
+);
+```
+
+Toor provides a top level functions to register locators 
+in the global instance of the toor. So instead of creating
+a top level `toor` variable which holds `Toor.instance`
+and then using its methods you can
+
 ## 🧪 Testing with Toor
 Sometimes, you need different (e.g. mock) objects to be created in tests.
 There are two ways to achieve that with Toor:

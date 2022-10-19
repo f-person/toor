@@ -8,6 +8,7 @@ part 'toor_impl/toor_lazy_singleton_impl.dart';
 part 'toor_locator/resettable_locator.dart';
 part 'toor_locator/toor_locator.dart';
 part 'toor_locator/toor_locator_async.dart';
+part 'toor_toplevel_locators.dart';
 part 'toor_test/toor_test.dart';
 
 /// A simple service locator manager that lets you register compile-time safe
