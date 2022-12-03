@@ -43,6 +43,18 @@ abstract class ToorLocator<T> extends ToorLocatorBase {
   T call() => get();
 }
 
+/// {@template ToorMutableLocator}
+/// [ToorLocator] with methods to change the current value.
+/// {@endtemplate}
+abstract class ToorMutableLocator<T> extends ToorLocator<T> {
+  const ToorMutableLocator();
+
+  /// {@template ToorMutableLocatorPut}
+  /// Change the current value of the locator.
+  /// {@endtemplate}
+  void put(T value);
+}
+
 /// {@macro ToorLocatorBase}
 ///
 /// This type of locators allow you to create factories with one parameter.

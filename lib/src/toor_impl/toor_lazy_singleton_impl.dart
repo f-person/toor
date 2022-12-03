@@ -1,10 +1,18 @@
 part of '../toor.dart';
 
-class _ToorLazySingletonImpl<T> extends ToorLocator<T> {
+class _ToorLazySingletonImpl<T> extends ToorLocator<T>
+    with _ToorLazySingletonMixin<T> {
   _ToorLazySingletonImpl(this.lazySingletonCreator, this.onDispose);
 
+  @override
   late FactoryFunc<T> lazySingletonCreator;
+  @override
   late DisposeFunc<T>? onDispose;
+}
+
+mixin _ToorLazySingletonMixin<T> on ToorLocator<T> {
+  abstract FactoryFunc<T> lazySingletonCreator;
+  abstract DisposeFunc<T>? onDispose;
 
   late _ToorLazySingletonHolder<T> _instanceHolder = _createInstanceHolder();
 
