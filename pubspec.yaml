@@ -7,7 +7,7 @@ repository: https://github.com/f-person/toor
 issue_tracker: https://github.com/f-person/toor/issues
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   meta: ^1.8.0

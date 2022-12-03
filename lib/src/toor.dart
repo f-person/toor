@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 part 'toor_impl/toor_factory_impl.dart';
 part 'toor_impl/toor_impl.dart';
 part 'toor_impl/toor_lazy_singleton_impl.dart';
+part 'toor_impl/toor_mutable_lazy_singleton_impl.dart';
 part 'toor_locator/resettable_locator.dart';
 part 'toor_locator/toor_locator.dart';
 part 'toor_locator/toor_locator_async.dart';
@@ -35,12 +36,26 @@ abstract class Toor {
 
   /// {@template ToorRegisterLazySingleton}
   /// Registers a singleton which will be created once called.
+  /// {@endtemplate}
   ///
+  /// {@template ToorSingletonOnDispose}
   /// [onDispose] is an optional callback that's called when
   /// resetting the locator (via [reset]).
   /// {@endtemplate}
   ToorLocator<T> registerLazySingleton<T>(
     FactoryFunc<T> lazySingletonCreator, {
+    DisposeFunc<T>? onDispose,
+  });
+
+  /// {@template ToorRegisterMutableLazySingleton}
+  /// Registers a singleton which has a mutable value.
+  /// In order to mutate the value of the singleton,
+  /// call [put].
+  ///
+  /// {@macro ToorSingletonOnDispose}
+  /// {@endtemplate}
+  ToorMutableLocator<T> registerMutableLazySingleton<T>({
+    FactoryFunc<T>? create,
     DisposeFunc<T>? onDispose,
   });
 
