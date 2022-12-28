@@ -1,3 +1,8 @@
+## 1.3.0
+
+Added mutable lazy singletons.
+
+
 ## 1.2.1
 
 Added top-level functions for calling the methods on `Toor.instance`.
