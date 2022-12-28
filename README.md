@@ -61,6 +61,28 @@ final credentialManager = toor.registerLazySingleton<ICredentialManager>(
 );
 ```
 
+#### Mutable Lazy Singleton
+In some cases you may need your singletons to be mutable (e. g. flavors). Toor
+has mutable singletons for that. Use `Toor.registerMutableLazySingleton` in
+order to create a lazy singleton with a mutable value. And, in order to change
+the value of the singleton, use `put`:
+
+```dart
+final toor = Toor.instance;
+
+final appFlavor = toor.registerMutableLazySingleton(
+  create: () => Flavor.dev,
+);
+print(appFlavor()); // Flavor.dev
+
+appFlavor.put(Flavor.prod);
+
+print(appFlavor()); // Flavor.prod
+```
+
+When calling `reset` on mutable singletons, the original value (from `create`)
+is assigned to them.
+
 ##### Additional cleanup code with `onDispose`
 
 Toor allows you to pass an optional `onDispose` function
