@@ -13,6 +13,17 @@ ToorLocator<T> registerLazySingleton<T>(
   );
 }
 
+/// {@macro ToorRegisterMutableLazySingleton}
+ToorMutableLocator<T> registerMutableLazySingleton<T>({
+  FactoryFunc<T>? create,
+  DisposeFunc<T>? onDispose,
+}) {
+  return _instance.registerMutableLazySingleton(
+    create: create,
+    onDispose: onDispose,
+  );
+}
+
 /// {@macro ToorRegisterFactory}
 ToorLocator<T> registerFactory<T>(FactoryFunc<T> factoryFunc) {
   return _instance.registerFactory(factoryFunc);
