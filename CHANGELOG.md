@@ -1,3 +1,7 @@
+## 1.3.1
+
+Add a top-level method for mutable lazy singletons.
+
 ## 1.3.0
 
 Added mutable lazy singletons.

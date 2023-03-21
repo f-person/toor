@@ -75,6 +75,24 @@ void main() {
       expect(currentInstance, equals(secondInstance));
       expect(identical(currentInstance, secondInstance), isFalse);
     });
+
+    test('[registerMutableLazySingleton]', () {
+      final initialService = _Service(
+        firstArg: 'Hey',
+        secondArg: "We're chained",
+      );
+      final mutatedService = _Service(
+        firstArg: 'Hey',
+        secondArg: "We're not chained (lol)",
+      );
+      final locator = registerMutableLazySingleton(
+        create: () => initialService,
+      );
+      expect(locator(), initialService);
+
+      locator.put(mutatedService);
+      expect(locator(), mutatedService);
+    });
   });
 }
 
