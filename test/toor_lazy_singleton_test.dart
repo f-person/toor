@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:toor/toor_test.dart';
+import 'package:toor/toor.dart';
 
 void main() {
   group('ToorLazySingleton', () {

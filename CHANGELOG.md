@@ -1,3 +1,9 @@
+## 2.0.0
+
+**BREAKING:** `package:toor/toor_test.dart` will now only expose testing utilities (i.e. `ToorLocatorOverrider`)
+in order to improve developer experience (i.e. no more LSP suggestions to import that file instead
+of `package:toor/toor.dart`).
+
 ## 1.3.2
 
 - Update README with a table of contents and badges.

@@ -1,6 +1,5 @@
 import 'package:test/test.dart';
-
-import 'package:toor/toor_test.dart';
+import 'package:toor/toor.dart';
 
 import 'test_utils.dart';
 

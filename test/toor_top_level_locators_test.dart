@@ -1,6 +1,6 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
-import 'package:toor/toor_test.dart';
+import 'package:toor/toor.dart';
 
 void main() {
   final toor = Toor.instance;
