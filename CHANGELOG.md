@@ -1,3 +1,8 @@
+## 1.3.2
+
+- Update README with a table of contents and badges.
+- Update the SDK constraint to ">=2.17.0 <4.0.0".
+
 ## 1.3.1
 
 Add a top-level method for mutable lazy singletons.

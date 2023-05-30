@@ -1,7 +1,26 @@
 [![codecov](https://codecov.io/gh/f-person/toor/branch/master/graph/badge.svg)](https://codecov.io/gh/f-person/toor)
+[![Pub version](https://img.shields.io/pub/v/toor.svg)](https://pub.dev/packages/toor)
+[![GitHub stars](https://img.shields.io/github/stars/f-person/toor?logo=github)](https://github.com/f-person/toor)
 
 # 🌱 What is Toor
 Toor makes service locators compile-time safe and easy to manage.
+
+## Table of Contents
+
+- [🚀 Getting Started](#-getting-started)
+- [✨ Toor in detail](#-toor-in-detail)
+  - [Types of locators](#types-of-locators)
+    - [Factory](#factory)
+    - [Lazy Singleton](#lazy-singleton)
+    - [Mutable Lazy Singleton](#mutable-lazy-singleton)
+    - [Async Factory](#async-factory)
+    - [Factories with parameters](#factories-with-parameters)
+  - [Advanced usage](#advanced-usage)
+    - [Resetting lazy singletons](#resetting-lazy-singletons)
+    - [Resetting all lazy singletons](#resetting-all-lazy-singletons)
+    - [Creating new instances of Toor](#creating-new-instances-of-toor)
+    - [Registering locators with top-level functions](#registering-locators-with-top-level-functions)
+- [🧪 Testing with Toor](#-testing-with-toor)
 
 ## 🚀 Getting Started
 
