@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/f-person/toor/branch/master/graph/badge.svg)](https://codecov.io/gh/f-person/toor)
+[![codecov](https://codecov.io/gh/f-person/toor/branch/main/graph/badge.svg)](https://codecov.io/gh/f-person/toor)
 [![Pub version](https://img.shields.io/pub/v/toor.svg)](https://pub.dev/packages/toor)
 [![GitHub stars](https://img.shields.io/github/stars/f-person/toor?logo=github)](https://github.com/f-person/toor)
 
